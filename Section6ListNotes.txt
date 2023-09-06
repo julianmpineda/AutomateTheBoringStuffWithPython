@@ -1,0 +1,63 @@
+13. Lists
+
+- lists defined by [] - undefined size
+- can use negative index [-1] = last index
+- "slice" [1:3] index 1 and 2. end is exclusive
+    * slice [:X] 0 to X. [X:] X to end (inclusive)
+- del list[x] - delete index x from list, values will "move up"
+- len(list) to return length
+- concat lists with +
+- repeat lists with *
+- both will form new lists
+- list() - convert to list
+    * will split strings into char list
+    * ints will error
+- in / not in
+
+14. For Loops with Lists, Multiple Assignment, and Augmented Operators
+
+- list(range(X)) to create lists of ascending order
+    *  list(range(X, Y, Z)) [x - Y, with step Z]
+- range(len(list)) - for loop iterate through list
+    * java equivalent (int i = 0; i < list.length; i++)
+- multi assignment -
+    * test = [0, 1, 2]
+    * X, Y, Z = test
+    * -> X = 0, Y = 1, Z = 2
+    * can also have multiple on both sides
+    * X, Y, Z = 0, 1, 2
+    * useful for swapping
+        - X, Y = Y, X - will swap values
+- augmented assignment operators
+    * +=, -=, *=, /=, %= (same as Java)
+
+15. List Methods
+
+- list.index(x) = first index of x in list
+- list.append(y) = adds y to end of list
+- list.insert(x, y) = adds x at index y (everything moves up)
+- list.remove(x) = remove x from list (del for index based removal)
+- list.sort() = int lists ascending, str lists ascii order (upper then lower)
+    * can pass list.sort(reverse=True) to reverse sort
+    * must be same data type
+    * pass list.sort(key=str.lower) for true alphabetical (does not change case)
+
+16. Similarities Between Lists and Strings 
+
+- can use many same lists functions with strings - index, slice, negative index, in/not in, for letter in string
+- string is inmutable
+    * can index, but can't reassign by index like a list
+    * can use slice (substring) to replace
+	- newString = string[0:3] + 'text' + string[4:] -> first slice end exclusive
+- assigning list to new variable name just creates reference 
+    * same list 2 references, changes to either will change both
+- "import copy" to create new list 
+    * "newList = copy.deepcopy(list)" creates second list with same values
+    * copy.copy() creates 'shallow copy', will make new list with references originals of any inside lists.
+    * copy.deepcopy() creates 'deep copy', all new objects for everything inside list 
+- list creation ignores linebreaks and leading spaces, can write in multi-line
+- use '\' at the end of line to continue and code line on new line 
+
+
+
+
