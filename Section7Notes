@@ -1,0 +1,27 @@
+17. The Dictionary Data Type
+
+* Dictionary = hash set? Can store multiple types
+* varName = {'x': 1, 'y':2, 'z' : 'cat'}
+* Call by key -> x == 1 -> "True"
+* Dictionary is unordered
+    - no index to call
+* Dictionary is mutable - holds references
+* var.keys() returns keys
+* var.values() returns values
+* var.items() returns pairs
+    - can cast to list, but already returns list-like 
+* use in for loops with one of the above
+    - use multi assignment to get both keys and values
+    - using .items() returns "tuples" 
+	* ordered and unchangable pair
+* dictionary.get() avoids having to check if exists.
+    - dict.get('key', 'X') -> if key in dict, return value, else return X
+* dictionary.setdefault() sets key if does not exist
+    - dictionary.setdefault('key', 'value')
+    - returns default if it does exist
+
+18. Data Structures
+
+- list of dictionarys to build "data structure"
+    * ex: tic-tac-toe = List of 9 keys with values
+- type() returns type of variable
