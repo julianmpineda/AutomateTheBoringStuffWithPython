@@ -1,0 +1,34 @@
+19. Advanced String Syntax
+
+- Can use double or single quotes, allow the use of the other inside string
+- \ escape characters
+    * \', \", \\
+    * \t = tab, \n = newline
+- "raw string" - r'string text here' - will see \ as regular character, not escape
+    * print(r'that is carol\'s cat) -> that is carol\'s cat
+- use """string text""" to make string literal - ignores any special chars
+    * can also use triple single quotes 
+
+20. String Methods
+
+- .upper(), .lower() will not change unless reassigned, but can be used to make case insensitive [title()]
+- .isupper(), .islower(), .isalpha(), .isalnum() [letters + numbers], .isdecimal(), .isspace(), .istitle() [title case]
+- .startswith('text'), .endswith('text')
+    * all boolean returns
+- 'string'.join([list]) - will enter string between each element
+    * ','.join(['x', 'y', 'z'] -> 'x,y,z'
+- .split('delimiter') -> returns list of string split by delimeter; default is space
+- .ljust(X, 'Y'), .rjust(X, 'Y') will pad with Y character to match X length, default Y is whitespace
+- .center(X, 'Y') will pad Y char equally on either side (uneven will pad in the back)
+- .strip('Y'), .lstrip('Y'), .rstrip('Y') 
+    * both, left, right respectively. Can also pass Y, chars do not need to be in order
+- .replace('X', 'Y') replace X with Y, can be strings
+- pyperclip copy/paste functions (need to import pyperclip)
+    * .copy('string')
+    * .paste('string')
+
+21. String formatting/interpolation
+
+- %s placeholder, with list of strings after %
+    * 'Hello %s you are invited to a party %s at %s. Please bring %s.' % (name, place, time, food)
+    * mostly just more readable, maybe easier to type
