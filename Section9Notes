@@ -1,0 +1,14 @@
+22. Launching Python Programs from Outside IDLE
+
+- Shebang line tells computer what to use to run
+   * #! filepath to python
+   * OS specific
+   * Windows: #! python3
+- run from command prompt or directly from run
+   * from run closes immediately when script done
+- pause.exe to wait in command line
+- call @pyw instead of @py wont open a new window
+- add directory to PATH, will let windows check 
+    * control panel -> system -> advanced system -> environment variables
+- *% forwards parameters from run/batch to python script
+    * *% should be placed in the batch file
