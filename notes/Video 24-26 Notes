@@ -1,0 +1,70 @@
+24. Regex Groups and the Pipe Character
+
+- Can group regex with () to return different things.
+	* ex re.compile(r'(\d\d\d)-(\d\d\d-\d\d\d\d)')
+	* mo.group() returns same
+	* mo.group(1) returns "group 1" - (\d\d\d)
+	* mo.group(2) returns "group 2" - (\d\d\d-\d\d\d\d)
+	* escape parentheses to search for parentheses, even with a raw string.
+- '|' for 'or"
+	* re.compile(r'Bat(man|mobile|copter|bat)')
+	* will find any batman, batmobile, batcopter, batbat
+	* returns None if no match
+	  careful because Nonetpe has no group() method
+
+25. Repetition in Regex Patterns and Greedy/Nongreedy Matching
+
+- '?' zero or one times, not more than once
+    * re.compile(r'Bat(wo)?man')
+		- matches both Batman and Batwoman
+    * re.compile(r'(\d\d\d-)?\d\d\d-\d\d\d\d')
+		- area code optional version
+- '*' zero or more times
+	* re.compile(r'Bat(wo)*man')
+		- matches both Batman and Batwoman
+		- also matches Batwowowowowowoman
+		- can escape to search for '*'
+- '+' one or more times	
+	* re.compile(r'Bat(wo)*man')
+		- does NOT match Batman
+		- matches Batwoman and Batwowowowowowoman
+		- can escape to search for '+'
+- '{x}' exactly x times	
+	* re.compile(r'Bat(wo){3}man')
+		- only matches Batwowowoman
+	* re.compile(r'((\d\d\d-)?\d\d\d-\d\d\d\d)(,)?{3}')
+		- matches 3 phone numbers in a row, with optional area code and separating comma
+	* can specify range {x,y} - will be 'greedy', will match max possible string
+		- {x,y}? = 'non-greedy', will match smallest possible
+			* ? generally means 'non-greedy'
+
+26. Regex Character Classes and the findall() Method
+
+- .findall() search for all matches of regex pattern
+	* zero or one group will return list of found matches
+		- will only return list of grouped data, will lose ungrouped data
+	* two+ groups will return list of tuples
+		* groups can be nested (r'((\d\d\d\)-(\d\d\d-\d\d\d\d))) returns
+		  [('123-456-7890', '123', '456-7890')]
+	
+- character classes
+	* \d = digit 0-9
+	* \D = NOT a digit
+	* \w = a letter, digit, or underscore ('words')
+	* \W = NOT a letter, digit, or underscore	
+	* \s = space, tab, newline
+	* \S = NOT a space, tab, newline
+	
+	* lyrics = (12 Drummers Drumming, 11 Pipers Piping, 10 Lords a Leaping, 
+			    9 Ladies Dancing, 8 Maids a Milking, 7 Swans a Swimming, 
+			    6 Geese a Laying, 5 Golden Rings, 4 Calling Birds, 3 French Hens,
+				2 Turtle Doves, and 1 Partridge in a Pear Tree) 
+	  xmasRegex = re.compile(r'\d+\s\w+')
+	  returns ['12 Drummers', 11 Pipers, etc] # only matches first word of item
+
+- define your own with []
+	* re.compile(r'[aeiou]'), (r'[0-9]') implied or | for all chars or range
+		- case sensitive for letters
+	* [aeiou]{2} will find double vowels
+	* [^aeiou] = not lowercase vowels. ^ = not in class, all none-specified chars
+	
