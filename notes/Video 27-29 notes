@@ -1,0 +1,60 @@
+27. Regex Dot-Star and the Caret/Dollar Characters
+
+- ^ must be at the beginning
+	* regex = re.compile(r'^Hello')
+	* will only find Hello at the beginning when called
+	
+- $ must be at the end
+	* regex = re.compile(r'Hello$')
+	* will only find Hello at the end when called
+	
+- can use both '^regex$' to mean entire string must match the pattern
+	* '^hello$' only finds hello
+	* '^\d+$' only finds digits of any length (can't be interrupted)
+	
+- . any char besides newline (only 1)
+	* '.*' very common; any char, 0 or more times; any pattern (besides new line)
+	
+- .* naturally greedy, use ? to not be greedy
+	* non greedy will stop after first match
+	* greedy takes whole string first.
+		- '<example1>example2>'
+		- <(.*)> finds 'example1>example2'
+		- <(.*?)> finds 'example1'
+		
+- .* will also stop at newline chars.
+	* use re.compile('.*', re.DOTALL) to include newline
+	
+- re.compile(r'[aeiou]', re.IGNORECASE [or re.I]) to ignore case
+	* finds all vowels regardless of case
+	
+28. Regex sub() Method and Verbose Mode
+
+- .sub() works like find and replace (substitute)
+	* Regex.sub('Replacement', 'String')
+		- replaces all occurences of Regex in String with Replacement
+			* /1, /2, /3 to label which group you want it to replace with
+		- use groups to replace specific text within strings
+		
+- verbose format ('regex', re.VERBOSE)
+	* use triple quotes, then add newlines
+	* can use commas to add comments 
+		- re.compile(r'''
+			(\d\d\d-)|   # area code w/o parentheses, with dash
+			(\(d\d\d\) ) # area code with parentheses, no dash
+			\d\d\d       # first numbers
+			-		     # second dash
+			\d\d\d\d     # end 4 digits
+		    \sx\d{2,4}   # extension x1234
+		  ''', re.VERBOSE)
+	* lets you add comments to complicated regex
+	
+- you can use | (pipe) to pass multiple arguments to re.compile
+	* re.compile(r'regex', re.I | re.DOTALL | re.VERBOSE)
+		- pipe not used much in Python otherwise
+		
+29. Regex Example Program: A Phone and Email Scraper
+
+- findall() will returns tuples if groups exist, so you can set the whole thing
+	to be a single group to get group 0.
+- see code for phoneAndEmail.py
