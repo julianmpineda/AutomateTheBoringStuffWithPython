@@ -1,0 +1,99 @@
+30. Filenames and Absolute/Relative File Paths
+
+- need to escape backslash in windows when using strings for filepath, or use raw string
+
+- import "os" library
+	* os.path.join('','','') will generate correct filepath string for OS
+		- ex: os.path.join('c:', 'folder1', 'folder2') = c:\\folder1\\folder2 on windows
+	* os.getcwd() - get 'Current Working Directory'
+	* os.chdir('filepath) change  directory
+	* os.path.abspath('folder') - generates absolute path based on CWD (can pass ..)
+	* os.path.isabs(filepath) - boolean does it begin from root?
+	* os.path.relpath('filepath1', 'filepath2') - generates relative path to filepath1 
+	  as if filepath2 is CWD.
+	* os.path.dirname('filepath') - generates path to current directory (truncates file names)
+	* os.path.basename('filepath') - pulls last file or folder in path
+	* os.path.exists('filepath') - Boolean does this filepath exist?
+	* os.path.isfile('filepath') - boolean is this a file?
+	* os.path.isdir('filepath') - boolean is this a folder?
+	* os.path.getsize('filepath') - returns size in bytes
+	* os.listdir('folder') - returns files in folder
+	* os.makedirs('absolute filepath' or 'relative filepath') - creates based on what you list
+	
+- relative vs absolute filepaths
+	* absolute starts from root folder
+	* relative is relative to CWD
+	
+- '.' this directory, '..' parent folder
+	* .\folder1 = [this folder]\folder1
+	* ..\folder1 = [parentfolder]\folder1 - same level as CWD
+
+31. Reading and Writing Plaintext Files
+
+- open('filename) - can pass absolute or relative paths. Opens in read mode
+
+- .read() - prints out file text. new line represented as \n with no spaces
+	* only works once, have to reopen to read twice. Can save to variable
+	
+- .readlines() - returns list of strings separated by newline. Newline still appended to the end
+
+- .close() when done
+
+- open('filepath', 'w' or 'a') - open in write or append mode
+	* append mode appends to end, write will overwrite (open to close)
+	* if no file exists, will create one.
+	* .write('text') does not add auto new line
+
+- use shelve module to store more complex structures
+	* import shelve
+	* var = shelve.open('filepath')
+	* var['name'] = ['x', 'y', 'z']
+	* close after
+	* grab using dictionary style "var['name']" will return object 
+	* similar to key value pair in dictionary
+	* creates 3 files on harddrive (windows 10)
+		- name.bak
+		- name.dat
+		- name.dir
+		- binary files so probably human unreadable format
+	* var.keys() - convert to list or else will show pointer
+	* var.values() - same thing, convert to actual list
+	
+32. Copying and Moving Files and Folders
+
+- import shutil (shell utilities)
+
+- shutil.copy('target file', 'destination path')
+	* use filename in dest path to rename copy
+	
+- shutil.copytree('target folder', 'dest path + name') to copy folder
+
+- shutil.move('target file', 'destination folder')
+
+- shutil has no rename, use move as a rename. Move to same folder with new name
+
+33. Deleting Files
+
+- os.unlink('filename') deletes file, relative or absolute filepath
+
+- os.rmdir('folder') folder must be completely empty
+
+- shutil.rmtree('folder') delete folder and everything in it
+
+- good practice to 'dry-run' any delete scripts, comment out delete code and 
+  use a print to show what will be deleted
+  
+- delete functions are PERMANENT - bypasses recycling bin
+  
+- send2trash module will sent to trash - not built in
+	* send2trash.send2trash('file') sends to recycle bin instead of deletes
+	* can send entire folder + contents
+	
+34. Walking a Directory Tree
+	
+- os.walk('folder') - creates walk object
+	* returns list with folderName, subfolders, files
+	* use for loop to see return value
+	* iterating with loop will go into each folder
+	* can iterate into folder and files to do whatever action
+	* if using shutil, need to use join with folder, generates relative path
