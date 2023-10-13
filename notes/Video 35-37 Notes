@@ -1,0 +1,52 @@
+Section 12: Debugging
+
+35. The raise and assert Statements
+
+- raise Exception('error message)
+	* raises exception object with the error message
+	* same as system exceptions
+	* Exception/Traceback will show the file and line where it broke.
+
+- traceback.format_exc()
+	* import traceback module first
+	* returns traceback object as a string
+	* useful for writing to error log files (use append mode)
+	
+- assert (boolean condition), 'error message'
+	* another kind of exception - 'sanity check'
+	* assertion should crash the program
+	* for programmer error, not user error - use exception for users
+	
+36. Logging
+
+- import logging
+	* logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+		- sets format for log messages
+	* logging.debug('message') generates message in format, similar to print() but with more info
+
+- 5 Log Levels (lowest -> highest)
+	* debug -> info -> warning -> error -> critical
+	* logging.disable(logging.CRITICAL) (disable everything critical and lower)
+		- can quickly control the log messages priority
+		- show only up to the level you want
+		
+- logging.basicConfig(filename='log.txt'...)
+	* add filename argument
+	* writes to file instead
+	* relative path
+	
+37. Using the Debugger
+
+- Lesson is IDLE specific 
+
+- Debug -> Debugger, choose all 4 checkboxes to show all info
+
+- 5 buttons:
+	* Go - will run program till end or breakpoint
+	* Step (into) - go into the function call - can step into shell
+	* (Step) Over - execute function call and go to next line
+	* (Step) Out - steps out of functions to parent - if in parent, will go to next breakpoint or finish program
+	* Quit quits program
+
+- Set breakpoints through right click menu - highlighted yellow
+	* clear through same right click menu
